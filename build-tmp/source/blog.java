@@ -3,6 +3,7 @@ import processing.data.*;
 import processing.event.*; 
 import processing.opengl.*; 
 
+import gifAnimation.*; 
 import controlP5.*; 
 
 import java.util.HashMap; 
@@ -17,20 +18,28 @@ import java.io.IOException;
 public class blog extends PApplet {
 
 
+
+
 public void setup() {
 	initRandomVars();
 	size(1360,768);
 	noStroke();
 	smooth();
+
+	if (dir<3) {
+		x = 1;
+	} else {
+		x = -1;
+	}
 	// setupGUI();
+	setupGifExport();
 }
 
-int x = 0;
 public void draw() {
-	background(0);
 	// updateFromGUI();
-	float off = x%circleOffset;
+	int off = x%circleOffset;
 	drawCircles(off);
+	addToGif();
 
 	if (dir<3) {
 		x++;
@@ -38,10 +47,17 @@ public void draw() {
 		x--;
 	}
 
+	println(off);
+	if (off == 0) {
+		println("repeat?");
+	 	// gifExport.finish();
+	 	exit();
+	}
+
 }
 
 public void keyPressed() {
-	initRandomVars();
+	// initRandomVars();
 }
 
 public void drawCircles(float offset) {
@@ -79,9 +95,26 @@ public void setFillColor(int x, float origin, float target, float offset) {
 	fill(color(r,g,b));
 }
 
-// void draw() {
 
-// }
+
+
+GifMaker gifExport;
+
+public void setupGifExport() {
+	gifExport = new GifMaker(this, getTimestamp() + ".gif");
+	gifExport.setRepeat(0);             // make it an "endless" animation
+	// gifExport.setTransparent(0,0,0);    // black is transparent
+} 
+
+public void addToGif() {
+	gifExport.setDelay(1);
+    gifExport.addFrame();
+}
+
+
+public String getTimestamp() {
+	return str(millis());
+}
 
 ControlP5 cp5;
 Accordion accordion;
@@ -140,11 +173,14 @@ public void updateFromGUI() {
 	startColor = cp1.getColorValue();
 	endColor = cp2.getColorValue();
 	diameterX = s.arrayValue()[0];
-	circleOffset = diameterX*(s.arrayValue()[1]/100);
+	circleOffset = PApplet.parseInt(diameterX*(s.arrayValue()[1]/100));
 }
 
+int x;
+
 int startColor, endColor;
-float diameterX, circleOffset,minCircleCenter;
+float diameterX,minCircleCenter; 
+int circleOffset;
 int dir;
 
 public void initRandomVars() {
@@ -163,7 +199,7 @@ public void initRandomVars() {
 		);
 
 	diameterX = random(150,480);
-	circleOffset = diameterX*(random(20,55)/100);
+	circleOffset = PApplet.parseInt(diameterX*(random(20,55)/100));
 	minCircleCenter = -diameterX*2;
 
 	dir = PApplet.parseInt(random(1,4));

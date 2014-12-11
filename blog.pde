@@ -1,18 +1,26 @@
 
+
+
 void setup() {
 	initRandomVars();
 	size(1360,768);
 	noStroke();
 	smooth();
+
+	if (dir<3) {
+		x = 1;
+	} else {
+		x = -1;
+	}
 	// setupGUI();
+	setupGifExport();
 }
 
-int x = 0;
 void draw() {
-	background(0);
 	// updateFromGUI();
-	float off = x%circleOffset;
+	int off = x%circleOffset;
 	drawCircles(off);
+	addToGif();
 
 	if (dir<3) {
 		x++;
@@ -20,47 +28,15 @@ void draw() {
 		x--;
 	}
 
-}
-
-void keyPressed() {
-	initRandomVars();
-}
-
-void drawCircles(float offset) {
-
-	if (dir == 1) {
-
-		for (int x = width; x>minCircleCenter; x-=circleOffset) {
-			setFillColor(x, minCircleCenter, width, offset);
-			ellipse(x+offset, height/2, diameterX, height*1.2);
-		}
-	} else if (dir == 2) {
-		for (int y = int(minCircleCenter); y < height+circleOffset; y+=circleOffset) {
-			setFillColor(y, minCircleCenter, height, offset);
-			ellipse(width/2, y+offset, width*1.2, diameterX);
-		}
-	} else if (dir == 3) {
-		for (int x = int(minCircleCenter); x<width+circleOffset; x+=circleOffset) {
-			setFillColor(x, width, minCircleCenter, offset);
-			ellipse(x+offset, height/2, diameterX, height*1.2);
-		}
-	} else {
-		for (int y = height; y > int(minCircleCenter); y-=circleOffset) {
-			setFillColor(y, height, minCircleCenter, offset);
-			ellipse(width/2, y+offset, width*1.2, diameterX);
-		}
+	println(off);
+	if (off == 0) {
+		println("repeat?");
+	 	// gifExport.finish();
+	 	exit();
 	}
 
 }
 
-void setFillColor(int x, float origin, float target, float offset) {
-	float gradientPos = map(x,origin-offset,target-offset,0,1);
-	float r = map(gradientPos,0,1,red(startColor), red(endColor));
-	float g = map(gradientPos,0,1,green(startColor), green(endColor));
-	float b = map(gradientPos,0,1,blue(startColor), blue(endColor));
-	fill(color(r,g,b));
+void keyPressed() {
+	// initRandomVars();
 }
-
-// void draw() {
-
-// }

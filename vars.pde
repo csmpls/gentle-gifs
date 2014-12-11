@@ -1,6 +1,9 @@
 
+int x;
+
 color startColor, endColor;
-float diameterX, circleOffset,minCircleCenter;
+float diameterX,minCircleCenter; 
+int circleOffset;
 int dir;
 
 void initRandomVars() {
@@ -19,7 +22,7 @@ void initRandomVars() {
 		);
 
 	diameterX = random(150,480);
-	circleOffset = diameterX*(random(20,55)/100);
+	circleOffset = int(diameterX*(random(20,55)/100));
 	minCircleCenter = -diameterX*2;
 
 	dir = int(random(1,4));

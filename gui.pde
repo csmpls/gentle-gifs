@@ -56,5 +56,5 @@ void updateFromGUI() {
 	startColor = cp1.getColorValue();
 	endColor = cp2.getColorValue();
 	diameterX = s.arrayValue()[0];
-	circleOffset = diameterX*(s.arrayValue()[1]/100);
+	circleOffset = int(diameterX*(s.arrayValue()[1]/100));
 }
