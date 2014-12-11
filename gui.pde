@@ -1,4 +1,3 @@
-import controlP5.*;
 ControlP5 cp5;
 Accordion accordion;
 ColorPicker cp1, cp2;

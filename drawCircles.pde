@@ -1,4 +1,7 @@
 
+import gifAnimation.*;
+import controlP5.*;
+
 void drawCircles(float offset) {
 
 	if (dir == 1) {

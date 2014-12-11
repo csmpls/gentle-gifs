@@ -1,6 +1,5 @@
 
 
-import gifAnimation.*;
 
 GifMaker gifExport;
 
