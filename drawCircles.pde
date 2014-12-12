@@ -1,6 +1,4 @@
 
-import gifAnimation.*;
-import controlP5.*;
 
 void drawCircles(float offset) {
 

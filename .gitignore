@@ -1,2 +1,5 @@
 *.gif
 build-tmp
+application.linux64
+automate.sh
+upload.py

@@ -1,9 +1,10 @@
 
-
+import gifAnimation.*;
+//import controlP5.*
 
 void setup() {
 	initRandomVars();
-	size(1360,768);
+	size(540,540);
 	noStroke();
 	smooth();
 
@@ -31,7 +32,7 @@ void draw() {
 	println(off);
 	if (off == 0) {
 		println("repeat?");
-	 	// gifExport.finish();
+ 	gifExport.finish();
 	 	exit();
 	}
 
