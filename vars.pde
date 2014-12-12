@@ -8,13 +8,14 @@ int dir;
 
 void initRandomVars() {
 
-	randomSeed(millis());
-
 	startColor = color(
 		random(0,255),
 		random(0,255),
 		random(0,255)
-		); //color(255,33,86);
+);
+
+//  randomSeed(millis());
+//  
 	endColor = color(
 		random(0,255),
 		random(0,255),
