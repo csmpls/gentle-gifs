@@ -8,14 +8,14 @@ int dir;
 
 void initRandomVars() {
 
+  randomSeed(month()*day());
+
 	startColor = color(
 		random(0,255),
 		random(0,255),
 		random(0,255)
 );
 
-//  randomSeed(millis());
-//  
 	endColor = color(
 		random(0,255),
 		random(0,255),
