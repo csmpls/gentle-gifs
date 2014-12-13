@@ -4,7 +4,7 @@ boolean saving = false;
 
 void setup() {
 	initRandomVars();
-	size(512,512);
+	size(1340,768);
 	noStroke();
 	smooth();
 
