@@ -7,7 +7,7 @@ boolean saving = false;
 
 void setup() {
   initRandomVars();
-  size(1340,768);
+  size(800,800);
   noStroke();
   smooth();
 
@@ -23,11 +23,12 @@ void setup() {
 void draw() {
   updateFromGUI();
   int off = x%circleOffset;
-  drawCircles(off);
+//  drawCircles(off);
+  drawConcentricCircles(off);
   
-        if (saving) {
+  if (saving) {
     addToGif();
-        }
+   }
 
   if (dir<3) {
     x++;
@@ -37,30 +38,30 @@ void draw() {
 
       /// on repeat
   if (off == 0) {
-              if (save_gif && saving) {
-                  save_gif = false;
-                  saving = false;
-                  gifExport.finish();
-                  cp5.show();
-                  println("done saving");
-                }
-                if (save_gif && !saving) {
-                  cp5.hide();
-                  print("saving........");
-                  saving = true;
-                  setupGifExport();
-                }
+    if (save_gif && saving) {
+        save_gif = false;
+        saving = false;
+        gifExport.finish();
+        cp5.show();
+        println("done saving");
+      }
+      if (save_gif && !saving) {
+        cp5.hide();
+        print("saving........");
+        saving = true;
+        setupGifExport();
+      }
                 
   }
 
 }
 
 void keyPressed() {
-
-        if (key == 's') {
-          save_gif = true;
-
-        } else {
-            initRandomVars();
-        }
+  if (key == 's') {
+    save_gif = true;
+  } else {
+    randomSeed(millis());
+    initRandomVars();
+    setInterfaceItemsToVars();
+  }
 }

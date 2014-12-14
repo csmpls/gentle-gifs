@@ -1,4 +1,10 @@
 
+void drawConcentricCircles(float offset) {
+	for (float d = width*1.6; d>diameterX; d-=circleOffset) {
+		setFillColor(int(d), diameterX, width*1.6, offset);
+		ellipse(width/2,height/2,d+offset,d+offset);
+	}
+}
 
 void drawCircles(float offset) {
 

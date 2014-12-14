@@ -52,6 +52,15 @@ void setupGUI() {
          ;
 }
 
+void setInterfaceItemsToVars() {
+
+  cp1.setColorValue(startColor);
+  cp2.setColorValue(endColor);
+  s.setArrayValue(new float[] {diameterX, 50});
+
+}
+
+
 void updateFromGUI() {
 	startColor = cp1.getColorValue();
 	endColor = cp2.getColorValue();

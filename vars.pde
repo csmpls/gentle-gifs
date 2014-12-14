@@ -8,13 +8,13 @@ int dir;
 
 void initRandomVars() {
 
-//	randomSeed(millis());
+	println("initializing random vars");
 
 	startColor = color(
 		random(0,255),
 		random(0,255),
 		random(0,255)
-		); //color(255,33,86);
+		); 
 	endColor = color(
 		random(0,255),
 		random(0,255),
@@ -26,4 +26,5 @@ void initRandomVars() {
 	minCircleCenter = -diameterX*2;
 
 	dir = int(random(1,4));
+
 }
